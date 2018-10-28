@@ -1,0 +1,1 @@
+[技侦安全态势](https://muzqi.github.io/Source/Release/jz-safetyTrend/totalTrend.html?mock)

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Demo</title>
+  <style>
+    .container {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="bubble" style="width: 300px;height: 300px"></div>
+    <div id="snowflake" style="width: 300px;height: 300px"></div>
+    <div id="linkDots" style="width: 300px;height: 300px"></div>
+    <div id="lighting" style="width: 300px;height: 300px"></div>
+  </div>
+<script type="text/javascript" src="hyeffect.min.js"></script></body>
+<script>
+  const { Bubble, Snowflake, Lighting, LinkDots } = hyeffect
+
+  const bubble = new Bubble('#bubble')
+  bubble.render()
+
+  const snowflake = new Snowflake('#snowflake')
+  snowflake.render()
+
+  const linkDots = new LinkDots('#linkDots')
+  linkDots.render()
+
+  const lighting = new Lighting('#lighting')
+  lighting.render()
+</script>
+</html>

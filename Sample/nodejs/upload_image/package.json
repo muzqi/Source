@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "supervisor app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "multiparty": "^4.2.1"
+  }
+}

@@ -25,6 +25,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 1000 * 60 * 30 },
   rolling: true,
+
   // 配置 connect-mongo 中间件, 用于将 session 与数据库相连
   store: new MongoStore({
     url: 'mongodb://localhost:27017/sessionlog',
@@ -32,20 +33,26 @@ app.use(session({
   })
 }))
 
-// 中间件: 自定义中间件, 用于验证登录权限
+// 中间件: 自定义中间件, 用于用户登录状态的判断
 app.use((req, res, next) => {
+  // 如果是入口页面或登录接口, 则继续匹配路由
   const pathname = url.parse(req.url).pathname
 
-  // 如果是入口页面或登录接口, 则继续匹配路由
   const condition =
     pathname === '/entrance' || pathname === '/login' || pathname === '/register'
+
   if (condition) {
     next()
   }
-  // 如果不是入口页面, 则需要判断用户是否登录
-  // 若没有登录, 则重定向到登录页面
+
+  // ⚠️ 登录状态判断:
+  // 1. 如果不是入口页面, 则需要判断用户是否登录
+  // 2. 若没有登录, 则重定向到登录页面
+  // -------------------------
+  // 因为在请求 '/logout' 接口时, 会将当前的会话销毁,
+  // 由此作为条件, 我们就可以判断用户是否在登录状态
   else {
-    if (req.session.userinfo) {
+    if (req.session.isLogin) {
       console.log('登录成功')
       next()
     } else {
@@ -73,36 +80,12 @@ app.get('/entrance', (req, res) => {
 
 // 视图: 登录成功后的内容页
 app.get('/content', (req, res) => {
+  const username = req.session.userinfo.username
+
   res.send(`
-    登录成功!
+    您好, ${username}
     <a href='/logout'>退出登录</a>
   `)
-})
-
-// 接口: 登录
-app.post('/login', (req, res) => {
-  const { username, password } = req.body
-
-  // 根据提交的用户密码为条件, 在数据库 user 表中查询
-  db.find('user', { username, password: md5(password) }, (err, data) => {
-    if (err) {
-      console.log(`查询用户信息失败: ${err}`)
-      return
-    }
-
-    // 如果该用户存在, 则创建 session 会话
-    if (data.length > 0) {
-      req.session.userinfo = data[0]
-      res.redirect('/content')
-    } else {
-      res.send(`
-        <script>
-          alert('用户名或密码错误')
-          location.href='/entrance'
-        </script>
-      `)
-    }
-  })
 })
 
 // 接口: 注册
@@ -119,8 +102,38 @@ app.post('/register', (req, res) => {
   })
 })
 
+// 接口: 登录
+app.post('/login', (req, res) => {
+  const { username, password } = req.body
+
+  // 根据提交的用户密码为条件, 在数据库 user 表中查询
+  db.find('user', { username, password: md5(password) }, (err, data) => {
+    if (err) {
+      console.log(`查询用户信息失败: ${err}`)
+      return
+    }
+
+    // 如果该用户存在, 则创建 session 会话
+    if (data.length > 0) {
+      req.session.isLogin = true
+      req.session.userinfo = data[0]
+
+      res.redirect('/content')
+    } else {
+      res.send(`
+        <script>
+          alert('用户名或密码错误')
+          location.href='/entrance'
+        </script>
+      `)
+    }
+  })
+})
+
 // 接口: 登出
 app.get('/logout', (req, res) => {
+
+  // 销毁当前用户的 session
   req.session.destroy((err => {
     if (err) {
       console.log(`退出登录失败: ${err}`)
@@ -131,4 +144,7 @@ app.get('/logout', (req, res) => {
   }))
 })
 
-app.listen(3001, '127.0.0.1')
+const server = app.listen(3001, '127.0.0.1', () => {
+  const { address: host, port } = server.address()
+  console.log(`Example App run at http://${host}:${port}`)
+})

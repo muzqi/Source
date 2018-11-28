@@ -35,6 +35,7 @@ app.use(session({
 
 // 中间件: 自定义中间件, 用于用户登录状态的判断
 app.use((req, res, next) => {
+  debugger
   // 如果是入口页面或登录接口, 则继续匹配路由
   const pathname = url.parse(req.url).pathname
 

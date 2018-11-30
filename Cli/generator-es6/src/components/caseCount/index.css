@@ -1,0 +1,52 @@
+ .case-count {
+   font-size: 56px;
+   width: 100%;
+   height: 260px;
+   .count1 {
+    float: left;
+    width: 98%;
+    margin-left: 2%;
+    padding:5px 0 10px 0;
+    .line {
+      background: url(./images/line.png) no-repeat;
+      background-size: 100% 100%;
+      width: 4px;
+      height: 150px;
+      float: left;
+      margin: 0 200px;
+    }
+    li {
+      float: left;
+      i {
+        background: url(./images/icon.png) no-repeat;
+        width: 51px;
+        height: 53px;
+        display: inline-block;
+        margin-right: 20px;
+      }
+      span {
+        color: #06ffff;
+        font-size: 66px;
+        font-family: digifacewide;
+        padding-right: 25px;
+      }
+      .rate {
+        font-size: 48px;
+        margin-left: 10px;
+        margin-top: 15px;
+        i {
+          width: 40px;
+          height: 49px;
+          display: inline-block;
+        }
+        .up-icon {
+          background: url(./images/up.png) no-repeat;
+        }
+        .down-icon {
+          background: url(./images/down.png) no-repeat;
+        }
+      }
+    }
+   }
+   
+ }

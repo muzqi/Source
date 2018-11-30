@@ -1,0 +1,21 @@
+.case-trend-container {
+  position: absolute;
+  left: 50%;
+  top: 240px;
+  transform: translateX(-50%);
+  width: 1200px;
+  height: 840px;
+  background: url(./images/plate1.png) no-repeat center / 100% 100%;
+  .case-trend-tlt {
+    margin: 44px 0 0 170px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+  }
+  svg {
+    position: absolute;
+    top: 136px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

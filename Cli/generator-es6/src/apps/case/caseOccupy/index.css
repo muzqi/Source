@@ -1,0 +1,40 @@
+.case-occupy-container {
+  position: absolute;
+  top: 1142px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1200px;
+  height: 900px;
+  background: url(./images/plate2.png) no-repeat center / 100% 100%;
+  .case-occupy-tlt {
+    margin: 44px 0 0 170px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .case-occupy-circle {
+    position: absolute;
+    top: 220px;
+    left: 50%;
+    margin: 0 -245px 0 -245px;
+    width: 490px;
+    height: 490px;
+    background: url(./images/circle.png) no-repeat center / 100% 100%;   
+    animation: Rotate 6s linear 0s infinite 
+  }
+  svg {
+    position: absolute;
+    top: 168px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes Rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}

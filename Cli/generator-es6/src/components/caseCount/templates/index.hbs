@@ -1,0 +1,56 @@
+ 
+ <div class="case-count">
+   <ul class="count1">
+     <li>
+        <p><i></i>全市立案总数</p>
+        <p class="rate">
+          <span>{{this.country.value}}</span>   
+          同比{{this.country.rate}}%
+          {{#compare this.country.flag '===' 1}}
+            <i class="up-icon"></i>
+          {{/compare}}
+          {{#compare this.country.flag '===' -1}}
+            <i class="down-icon"></i>
+          {{/compare}}
+          {{#compare this.country.flag '===' 0}}
+            <i class="equal">- </i>
+          {{/compare}}
+          <p>
+     </li>
+     <div class="line"></div>
+     <li>
+      <p><i></i>全市破案总数</p>
+      
+      <p class="rate">
+        <span>{{this.city.value}}</span> 
+        同比{{this.city.rate}}%
+        {{#compare this.city.flag '===' 1}}
+          <i class="up-icon"></i>
+        {{/compare}}
+        {{#compare this.city.flag '===' -1}}
+          <i class="down-icon"></i>
+        {{/compare}}
+        {{#compare this.city.flag '===' 0}}
+          <i class="equal">- </i>
+        {{/compare}}
+       </p> 
+     </li>
+     <div class="line"></div>
+     <li>
+      <p><i></i>重大警情</p>
+      <p class="rate">
+        <span>{{this.city.value}}</span> 
+        同比{{this.city.rate}}%
+        {{#compare this.city.flag '===' 1}}
+          <i class="up-icon"></i>
+        {{/compare}}
+        {{#compare this.city.flag '===' -1}}
+          <i class="down-icon"></i>
+        {{/compare}}
+        {{#compare this.city.flag '===' 0}}
+          <i class="equal">- </i>
+        {{/compare}}
+       </p> 
+     </li>
+   </ul>
+ </div>

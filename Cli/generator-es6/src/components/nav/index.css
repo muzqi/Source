@@ -1,0 +1,25 @@
+.page3-nav {
+  font-size: 60px;
+  width: 1046px;
+  height: 95px;
+  margin: 0 auto;
+  margin-top: 30px;
+  color: #88909f;
+  li {
+    width: 244px;
+    height: 49px;
+    line-height: 49px;
+    background: url(./images/nav-bg.png) no-repeat;
+    float: left;
+    margin-right: 155px;
+    text-align: center;
+    cursor: pointer;
+    &:last-child {
+        margin: 0;
+    }
+  }
+  .active {
+    background: url(./images/nav-hover-bg.png) no-repeat;
+    color: #06ffff;
+  }
+}

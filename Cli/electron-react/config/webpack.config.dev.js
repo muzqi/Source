@@ -11,8 +11,9 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
+const alias = require('./alias');
 
-const { themeColor, alias } = customConfig;
+const { themeColor } = customConfig;
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -90,9 +91,7 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
-
-      // 配置别名
-      ...alias
+      '@': alias('src')
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

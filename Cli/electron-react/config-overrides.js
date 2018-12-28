@@ -1,4 +1,4 @@
-const theme = require('./theme');
+const theme = require('./.theme');
 
 const path = require('path');
 const { injectBabelPlugin } = require('react-app-rewired');

@@ -1,5 +1,6 @@
-const path = require('path');
+const theme = require('./theme');
 
+const path = require('path');
 const { injectBabelPlugin } = require('react-app-rewired');
 const rewireLess = require('react-app-rewire-less');
 
@@ -27,9 +28,7 @@ module.exports = function override(config, env) {
   // 所有样式表:
   // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
   config = rewireLess.withLoaderOptions({
-    modifyVars: {
-      "@primary-color": "#1DA57A"
-    },
+    modifyVars: theme,
     javascriptEnabled: true,
   })(config, env);
 

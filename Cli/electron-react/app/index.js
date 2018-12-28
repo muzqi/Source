@@ -23,10 +23,7 @@ function createDevTools() {
 let win;
 const devUrl = 'http://localhost:3000';
 // 本地文件路径定位到打包的react文件
-const localUrl = `file://${path.resolve(
-  __dirname,
-  '../../app.asar/build'
-)}/index.html`;
+const localUrl = `file://${path.resolve(__dirname, '../../app.asar/build')}/index.html`;
 const appUrl = isDev ? devUrl : localUrl;
 
 function createWindow() {

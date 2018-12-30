@@ -1,24 +1,33 @@
-该脚手架为 electron 脚手架, 功能包含:
-- antd 能够配置主题变量 `~/config/custom.config.js`
-- css 预编译器 less, 支持 styled-components
-- polyfill 支持 ie 9
-- 支持 ES7 装饰符号
-- 支持 mobx react-router-dom
+## 开始
 
-## 运行
+### 实现
+- 使用 electron + create-react-app + antd 封装而成的跨平台桌面端脚手架
+- 本机系统环境
+  - macOS 10.13.1
+  - nodejs 10.8.0
+  - yarn 1.12.3 [registry: https://registry.npm.taobao.org]
+
+### 构建提供的功能(Webpack)
+- antd, 自助主题配置
+- 全局 LESS 变量配置
+- 支持 ES7 装饰器语法
+- 配置别名 ALIAS
+
+## 启动
 ``` bash
-# 开启 react 服务
-npm run start
-
-# 开启 electron 服务
-npm run electron
+yarn run start
 ```
 
-## 打包
-``` bash
-# 打包 react 项目
-npm run build
+## 打包构建
 
-# 打包 electron
-npm run package
+### mac
+
+``` bash
+yarn run build:mac
+```
+
+### win
+
+``` bash
+yarn run build:win
 ```

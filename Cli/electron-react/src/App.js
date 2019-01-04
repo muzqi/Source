@@ -4,8 +4,14 @@ import '@/App.css';
 
 const { Option } = Select;
 
-const App = () => (
-  <Form>
+const electron = window.require('electron')
+const fs = electron.remote.require('fs')
+const process = electron.remote.require('process')
+
+const App = () => {
+  fs.mkdirSync(`${process.env.HOME}/database`)
+
+  return <Form>
     <Form.Item
       label="数字输入框"
       labelCol={{ span: 8 }}
@@ -54,12 +60,12 @@ const App = () => (
     >
       <Button type="primary" htmlType="submit">
         确定
-      </Button>
+    </Button>
       <Button style={{ marginLeft: 8 }}>
         取消
-      </Button>
+    </Button>
     </Form.Item>
   </Form>
-);
+};
 
 export default App;

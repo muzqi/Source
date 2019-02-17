@@ -1,0 +1,11 @@
+{
+  "extends": "tslint-config-alloy",
+  "rules": {
+    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}]
+  },
+  "linterOptions": {
+    "exclude": [
+      "**/node_modules/**"
+    ]
+  }
+}

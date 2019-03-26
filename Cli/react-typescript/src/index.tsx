@@ -1,4 +1,3 @@
-import '@/index.less';
 import store from '@/store';
 import App from '@/containers/App';
 

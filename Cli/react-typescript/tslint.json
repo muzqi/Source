@@ -1,0 +1,24 @@
+{
+  "extends": "tslint-config-alloy",
+  "rules": {
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
+    "no-implicit-dependencies": false,
+    "linebreak-style": false,
+    "no-redundant-jsdoc": false,
+    "no-this-assignment": false,
+    "no-magic-numbers": false,
+    "no-import-side-effect": false,
+    "ordered-imports": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "**/node_modules/**"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script src="https://open.home.komect.com/jssdk/hejia-1.2.0.min.js"></script>
+    <script>
+        Hejia.ready(function() {
+            Hejia.getPhoneNumber(function (version) {
+                alert(version)
+            }, function (){
+                alert('调用失败')
+            });
+        });
+    </script>
+</body>
+</html>

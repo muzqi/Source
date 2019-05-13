@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=0'>
+  <link rel='stylesheet' href='./css/weui-v1.1.3.css'>
+  <link rel='stylesheet' href='./css/index.css'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>注册</title>
+</head>
+
+<body>
+  <div class='account-container'>
+    <a class='btn-account' href='./login.html'>去登录</a>
+
+    <div class='logo-panel'>
+      <img src='./images/logo_m.png' alt=''>
+      <p>绑定和目语音助手 享受智能家居生活</p>
+    </div>
+
+    <div class='auth-wrapper'>
+
+      <div id='phoneNumber' class='auth-item'>
+        <div class='title'>手机号</div>
+        <div class='input'>
+          <input type='text'>
+        </div>
+        <div class='error-tip'></div>
+      </div>
+
+      <div id='verify' class='auth-item'>
+        <div class='title'>验证码</div>
+        <div class='input'>
+          <input type='text' placeholder='请输入验证码'>
+        </div>
+        <div id='btnSendVerify' class='btn-verify'>发送验证码</div>
+        <div class='error-tip'></div>
+      </div>
+
+      <div id='password' class='auth-item'>
+        <div class='title'>设置密码</div>
+        <div class='input'>
+          <input type='text' placeholder='6~20位数字和字母的组合'>
+        </div>
+        <img id='eyes' class='btn-eye' src='./images/common_noeye.png' alt=''>
+        <div class='error-tip'></div>
+      </div>
+
+    </div>
+
+    <div id='register' class='btn-primary'>
+      注册并绑定
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript" src="./js/lib/weui-v1.1.4.min.js"></script>
+<script type="text/javascript" src="./js/lib/zepto-v1.2.0.min.js"></script>
+<script type='text/javascript' src='./js/lib/fontSize.js'></script>
+<script type='text/javascript' src='./js/lib/md5-v1.1.0.min.js'></script>
+<script type='text/javascript' src='./js/config.js'></script>
+<script type='text/javascript' src='./js//modules.js'></script>
+
+<script>
+  $(function () {
+    var phoneNumberAuth = $('#phoneNumber .input input');
+    var passwordAuth = $('#password .input input');
+    var verifyAuth = $('#verify .input input');
+
+    tools.addTogglePdVisibleEvent('eyes');
+    tools.toggleBtnDisable(true);
+
+    var deviceSn = cookie.getCookie('device_sn');
+
+    /******************** 表单校验 Start ********************/
+    var pnReady = false;
+    var pdReady = false;
+    var codeReady = false;
+    function verifyPhone(value) {
+      if (!tools.verifyPhone(value)) {
+        pnReady = false;
+        tools.toggleBtnDisable(true);
+        tools.toggleErrorTip('phoneNumber', true, '请填写正确格式手机号码!');
+      } else {
+        pnReady = true;
+        if (pdReady && pnReady && codeReady) {
+          tools.toggleBtnDisable(false);
+        }
+
+        tools.toggleErrorTip('phoneNumber', false);
+      }
+    }
+    function verifyPassword(value) {
+      if (!tools.verifyPassword(value)) {
+        pdReady = false;
+        tools.toggleBtnDisable(true);
+        tools.toggleErrorTip('password', true, '请填写6~20位数字和字母组合!');
+      } else {
+        pdReady = true;
+
+        if (pdReady && pnReady && codeReady) {
+          tools.toggleBtnDisable(false);
+        }
+        tools.toggleErrorTip('password', false);
+      }
+    }
+    function verifyCode(value) {
+      if (!tools.verifyCode(value)) {
+        codeReady = false;
+        tools.toggleBtnDisable(true);
+        tools.toggleErrorTip('verify', true, '请输入4~6位数字的验证码!');
+      } else {
+        codeReady = true;
+
+        if (pdReady && pnReady && codeReady) {
+          tools.toggleBtnDisable(false);
+        }
+        tools.toggleErrorTip('verify', false);
+      }
+    }
+
+    phoneNumberAuth.on('keyup', function (e) {
+      var value = e.currentTarget.value;
+      verifyPhone(value);
+    });
+    phoneNumberAuth.on('blur', function (e) {
+      var value = e.currentTarget.value;
+      verifyPhone(value);
+    });
+
+    passwordAuth.on('keyup', function (e) {
+      var value = e.currentTarget.value;
+      verifyPassword(value);
+    });
+    passwordAuth.on('blur', function (e) {
+      var value = e.currentTarget.value;
+      verifyPassword(value);
+    });
+
+    verifyAuth.on('keyup', function (e) {
+      var value = e.currentTarget.value;
+      verifyCode(value);
+    });
+    verifyAuth.on('blur', function (e) {
+      var value = e.currentTarget.value;
+      verifyCode(value);
+    });
+    /******************** 表单校验 End ********************/
+
+    /******************** 点击注册 Start ********************/
+    $('#register').on('click', function () {
+      if ($(this).hasClass('disable')) {
+        return;
+      }
+
+      var phoneNumber = phoneNumberAuth.val();
+      var password = passwordAuth.val();
+      var code = verifyAuth.val();
+
+      // 隐藏所有错误提示
+      tools.toggleErrorTip('phoneNumber', false);
+      tools.toggleErrorTip('password', false);
+      tools.toggleErrorTip('verify', false);
+
+      // 发起注册请求
+      oldAjax.regist(phoneNumber, code, password, function (res) {
+        switch (res.result) {
+          case 0:
+            // 登录并绑定, 跳转至详情页
+            oldAjax.login(phoneNumber, password, function (_res) {
+              switch (_res.result) {
+                // 登录成功
+                case 0:
+                  cookie.setCookie('hejia_token', _res.data.token);
+                  cookie.setCookie('hejia_userid', _res.data.userid);
+
+                  // 绑定设备
+                  oldAjax.mcbind(_res.data.userid, _res.data.token, deviceSn, function (_res_) {
+                    switch (_res.result) {
+                      // -314 当前用户已经绑定
+                      case -314:
+                        window.location.href = './index.html';
+                        break;
+                      // 0 绑定成功
+                      case 0:
+                        window.location.href = './index.html';
+                        break;
+                      case -416:
+                        weui.topTips('设备上报配网结果错误!');
+                        break;
+                      case -316:
+                        weui.topTips('设备已有其他用户绑定!');
+                        break;
+                      case -315:
+                        weui.topTips('绑定失败!');
+                        break;
+                      default:
+                        weui.topTips('绑定失败!');
+                        break;
+                    }
+                  });
+                  break;
+                default:
+                  weui.topTips('登录失败!');
+                  break;
+              }
+            });
+            break;
+          case -30:
+            tools.toggleErrorTip('verify', true, '验证码不合法或已超时!');
+            break;
+          default:
+            weui.topTips('注册失败!');
+            break;
+        }
+      })
+    });
+    /******************** 点击注册 End ********************/
+
+    /******************** 点击发送验证码 Start ********************/
+    var T = 60;
+    var t = T;
+    var isSending = false;
+    $('#btnSendVerify').on('click', function () {
+      // 如果已经发送且未到重新发送时间, return
+      if (isSending) {
+        return;
+      }
+
+      isSending = true;
+
+      var self = this;
+
+      // 获取手机号码
+      var phoneNumber = phoneNumberAuth.val();
+
+      // 验证手机号码
+      if (!tools.verifyPhone(phoneNumber)) {
+        isSending = false;
+        tools.toggleErrorTip('phoneNumber', true, '请填写正确格式的手机号码!');
+        return;
+      } else {
+        tools.toggleErrorTip('phoneNumber', false);
+      }
+
+      // 发起请求
+      // cnm 封装到即时函数里就不行了???????cnm 的
+      $.ajax({
+        type: 'POST',
+        url: ROOBO_CONFIG.baseUrl + ROOBO_CONFIG.api.authcode,
+        contentType: 'application/json',
+        data: JSON.stringify({
+          'action': 'newcode',
+          'data': {
+            'app_package_id': 'he.h5-fix',
+            'appid': 'he.h5-fix',
+            'phonenum': phoneNumber,
+            'usage': 'regist-phone',
+          },
+        }),
+        success(res) {
+          switch (res.result) {
+            case 0:
+              // 提示
+              weui.toast('验证码已发送');
+
+              // 改变按钮样式
+              $(self).addClass('disable');
+              $(self).text(T + '秒后重发');
+
+              // 开启计时器
+              var timer = setInterval(function () {
+                t -= 1;
+                $(self).text(t + '秒后重发');
+
+                // 计时完毕后, 还原设置
+                if (t === 0) {
+                  window.clearInterval(timer);
+                  t = T;
+                  isSending = false;
+                  $(self)
+                    .text('发送验证码')
+                    .removeClass('disable');
+                }
+              }, 1000);
+              break;
+            case -40:
+              isSending = false;
+              weui.topTips('操作过于频繁!');
+              break;
+            case -115:
+              isSending = false;
+              tools.toggleErrorTip('phoneNumber', true, '手机号已被注册!');
+              break;
+            default:
+              isSending = false;
+              weui.topTips('验证码发送失败!');
+              break;
+          }
+        },
+        error() {
+          isSending = false;
+          weui.topTips('获取验证码失败!');
+        },
+      });
+
+    });
+  });
+  /******************** 点击发送验证码 End ********************/
+</script>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>设备说明</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/weui-v1.1.3.css">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <div class="document-container">
+    <div class="rich-box">
+      <div class="title">
+        <span>一</span>
+        <span>按键图示说明</span>
+      </div>
+      <img style="max-width: 100%;width: 7rem;height: 7rem;" src="./images/intro/intro-7.png" alt="">
+    </div>
+
+    <div class="rich-box">
+      <div class="title">
+        <span>二</span>
+        <span>蓝牙说明</span>
+      </div>
+      <div style="margin-top: 0.32rem;" class="tmpl-docbar">
+
+        <div class="main">
+          <div class="item">
+            <div class="name">
+              打开蓝牙时，对音箱说：
+            </div>
+            <div class="value-box">
+              <div class="triangle"></div>
+              <div class="value">
+                "你好小目，打开蓝牙"
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="name">
+              关闭蓝牙时，对音箱说：
+            </div>
+            <div class="value-box">
+              <div class="triangle"></div>
+              <div class="value">
+                "你好小目，关闭蓝牙"
+              </div>
+            </div>
+          </div>
+          <div class="robot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rich-box">
+      <div class="title">
+        <span>三</span>
+        <span>环形灯效说明</span>
+      </div>
+      <img style="max-width: 100%;width: 7.1rem;height: 7rem;" src="./images/intro/intro-8.png" alt="">
+    </div>
+
+    <div class="rich-box">
+      <div class="title">
+        <span>四</span>
+        <span>如何下载和目语音助手APP</span>
+      </div>
+      <p class="content">
+        扫描以下二维码关注物联小智公众号，或在微信搜索“物联小智”，关注公众号后，可在公众号中找到安装文件。
+      </p>
+      <img style="width: 2.8rem;height: 2.8rem" src="./images/intro/code.png" alt="">
+    </div>
+
+    <div class="button-primary" style="margin: 0.32rem auto;">
+      前往微信公众号
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="./js/lib/zepto-v1.2.0.min.js"></script>
+<script type="text/javascript" src="./js/lib/weui-v1.1.4.min.js"></script>
+<script type="text/javascript" src="./js/lib/clipboard-v2.0.4.min.js"></script>
+<script type="text/javascript" src="./js/lib/fontSize.js"></script>
+<script type="text/javascript" src="./js/modules.js"></script>
+<script type="text/javascript">
+  $(function () {
+    tools.bindAlertEvent('.button-primary');
+  });
+</script>
+
+</html>

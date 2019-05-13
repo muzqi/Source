@@ -87,7 +87,13 @@
     tools.bindAlertEvent('#advertiseButton');
     tools.bindAlertEvent('#floatButton');
 
-    bind.aboveAndroid7();
+    Hejia.ready(function () {
+      Hejia.getDeviceInfo(function (obj) {
+        Hejia.getPhoneNumber(function (mobile) {
+          alert(mobile);
+        })
+      })
+    })
 
   });
 

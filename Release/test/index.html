@@ -9,14 +9,14 @@
 </head>
 
 <body>
-  <script src="./js/lib/hejia-1.2.0.min.js"></script>
+  <script src="https://open.home.komect.com/jssdk/hejia-1.2.0.min.js"></script>
   <script>
     Hejia.ready(function () {
-      // Hejia.getDeviceInfo(function (obj) {
-      Hejia.getPhoneNumber(function (mobile) {
-        alert(mobile);
+      Hejia.getDeviceInfo(function (obj) {
+        Hejia.getPhoneNumber(function (mobile) {
+          alert(mobile);
+        })
       })
-      // })
     })
   </script>
 </body>

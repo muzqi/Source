@@ -12,7 +12,7 @@
   <script>
     function test() {
       Hejia.ready(function () {
-        Hejia.getDeviceInfo({ deviceId: "CMCC-31526-4000119C0000015F" }, function (obj) {
+        Hejia.getDeviceInfo(function (obj) {
           alert(JSON.stringify(obj));
           Hejia.getPhoneNumber(function (version) {
             alert(version);

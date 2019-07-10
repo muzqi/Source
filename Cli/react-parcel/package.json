@@ -1,0 +1,23 @@
+{
+  "name": "parcel-react",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn run clean && cross-env NODE_ENV=development parcel index.html --no-cache --no-source-maps",
+    "release": "yarn run clean && cross-env NODE_ENV=production parcel build index.html --no-minify --no-cache",
+    "release:relative": "yarn run clean && cross-env NODE_ENV=production parcel build index.html --no-minify --no-cache --public-url ./",
+    "clean": "shx rm -rf dist"
+  },
+  "dependencies": {
+    "babel-preset-react-app": "^3.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^5.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "cross-env": "^5.1.1",
+    "less": "^3.9.0",
+    "postcss-cssnext": "^3.1.0",
+    "shx": "^0.3.2"
+  }
+}

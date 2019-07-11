@@ -36,7 +36,7 @@ const Hooks = () => {
     } else {
       titleEl.setAttribute('style', 'color: green');
     }
-  });
+  }, [count]);
 
   return (
     <CounterContext.Provider

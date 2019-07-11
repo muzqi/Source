@@ -29,12 +29,17 @@ const Title = () => (
 const Hooks = () => {
   const [count, setCount] = useState(0);
 
+  // 副作用，相当于 componentDidMount 和 componentDidUpdate
   useEffect(() => {
     const titleEl = document.getElementById('title');
     if (count % 2 === 0) {
       titleEl.setAttribute('style', 'color: red');
     } else {
       titleEl.setAttribute('style', 'color: green');
+    }
+
+    return () => {
+      console.log(count);
     }
   }, [count]);
 

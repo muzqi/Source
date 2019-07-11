@@ -3,7 +3,7 @@ import './index.less';
 
 const CounterContext = React.createContext();
 
-class Home extends Component {
+class Context extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,4 +46,4 @@ class Counter extends Component {
   }
 }
 
-export default Home;
+export default Context;

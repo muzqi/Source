@@ -1,5 +1,7 @@
-import Home from './home';
+import Context from './context';
+import Hooks from './Hooks';
 
 export {
-  Home,
+  Context,
+  Hooks,
 }

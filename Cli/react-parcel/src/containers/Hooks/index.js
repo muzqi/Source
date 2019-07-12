@@ -1,22 +1,22 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 const CounterContext = React.createContext();
 
-const Counter = () => (
-  <CounterContext.Consumer>
-    {(context) => (
-      <div>
-        <Title />
-        <button
-          onClick={() => context.setCount(context.count + 1)}
-        >
-          +
-        </button>
-      </div>
-    )}
-  </CounterContext.Consumer>
-)
+const Counter = () => {
+  const { count, setCount } = useContext(CounterContext);
+
+  return (
+    <div>
+      <Title />
+      <button
+        onClick={() => setCount(count + 1)}
+      >
+        +
+      </button>
+    </div>
+  );
+}
 
 const Title = () => (
   <CounterContext.Consumer>

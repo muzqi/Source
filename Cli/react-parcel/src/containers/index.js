@@ -1,7 +1,7 @@
 import Context from './context';
-import Hooks from './Hooks';
+import Topics from './Topics';
 
 export {
   Context,
-  Hooks,
+  Topics,
 }

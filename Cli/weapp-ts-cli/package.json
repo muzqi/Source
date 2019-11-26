@@ -1,0 +1,32 @@
+{
+  "name": "miniprogram-ts-quickstart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "compile": "./node_modules/typescript/bin/tsc",
+    "tsc": "node ./node_modules/typescript/lib/tsc.js",
+    "lint": "node ./node_modules/eslint/bin/eslint.js --ext .ts ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "husky": {
+    "hooks": {
+      "pre-commit": "node ./node_modules/eslint/bin/eslint.js --ext .ts ."
+    }
+  },
+  "dependencies": {
+    "dayjs": "^1.8.17"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "eslint": "^6.6.0",
+    "eslint-config-cmiot": "^1.0.0",
+    "husky": "^3.1.0",
+    "miniprogram-api-typings": "^2.8.3-1",
+    "prettier": "^1.19.1",
+    "typescript": "^3.3.3333"
+  }
+}

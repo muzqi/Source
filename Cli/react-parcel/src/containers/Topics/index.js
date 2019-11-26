@@ -21,7 +21,7 @@ const TopicsList = () => {
       success: (data) => dispatch(topicsSuccess(data)),
       fail: (err) => dispatch(topicsError(err)),
     });
-  }, [page]);
+  }, [didMount]);
 
   return (
     <div>

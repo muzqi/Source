@@ -79,7 +79,7 @@
     "jquery": "^3.3.1",
     "json-loader": "^0.5.4",
     "lodash": "^4.17.5",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.13.1",
     "normalize.css": "^5.0.0",
     "normalizr": "^3.2.3",
     "postcss-loader": "^1.1.0",

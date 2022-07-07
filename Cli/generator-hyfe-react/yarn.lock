@@ -4085,6 +4085,10 @@ istanbul-lib-instrument@^1.4.2, istanbul-lib-instrument@^1.7.5:
     istanbul-lib-coverage "^1.1.1"
     semver "^5.3.0"
 
+jquery@^3.3.1:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.3.tgz#2e545ec2b0f2957f41356510205214e98fad6582"
@@ -4768,8 +4772,8 @@ mockjs@^1.0.1-beta3:
     commander "*"
 
 moment@2.x, moment@^2.19.3:
-  version "2.21.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.21.0.tgz#2a114b51d2a6ec9e6d83cf803f838a878d8a023a"
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
 
 ms@2.0.0:
   version "2.0.0"
